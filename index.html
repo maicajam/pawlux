@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="PawLux premium dog and cat marketplace with accessible cart, checkout, appointments, account, guides, and responsive design." name="description"/>
+  <title>
+   PawLux PetCare | Fully Clickable Dog Cat Marketplace
+  </title>
+  <link href="https://images.unsplash.com" rel="preconnect"/>
+  <link href="css/style.css" rel="stylesheet"/>
+ </head>
+ <body class="dog-mode">
+  <div class="screen center start-screen" id="startScreen">
+   <div class="start-card glass">
+    <div class="start-logo-wrap">
+     <div class="start-logo-ring">
+      <div class="start-logo-main">🐾</div>
+     </div>
+     <div class="start-sparkle one">✦</div>
+     <div class="start-sparkle two">✦</div>
+     <div class="start-sparkle three">✦</div>
+    </div>
+    <p class="start-label">Premium PetCare Boutique</p>
+    <h1>PawLux</h1>
+    <p class="start-tagline">A modern pet-care website for dog and cat services, shopping, appointments, wishlists, and helpful care guides.</p>
+    <button class="primary start-btn" onclick="startLogin()">Start PawLux ›</button>
+   </div>
+  </div>
+  <div class="screen center hidden" id="auth">
+   <div class="auth-card glass">
+    <div class="auth-visual">
+     <span class="pill">
+      ✦ Premium Pet Ecosystem
+     </span>
+     <h1>
+      Care, shop, and book for pets in one place.
+     </h1>
+     <p>
+      Upgrade your pet care experience with personalized dog and cat products, services, knowledge, cart, checkout, and appointments.
+     </p>
+     <div class="auth-pets">
+      <img alt="Happy golden retriever dog" src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+      <img alt="Cute tabby cat" src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+     </div>
+    </div>
+    <div class="auth-form" id="loginBox">
+     <span class="pill">
+      🐾 PawLux PetCare
+     </span>
+     <h2>
+      Welcome Back!
+     </h2>
+     <p>
+      Login to shop, book, and manage your pet profile.
+     </p>
+     <div class="tabs">
+      <button aria-label="Login tab" class="tab active">
+       Login
+      </button>
+      <button aria-label="Sign up tab" class="tab" onclick="toggleAuth('signup')">
+       Sign Up
+      </button>
+     </div>
+     <label class="field">
+      ✉
+      <input aria-label="Email Address" placeholder="Email Address" type="email"/>
+     </label>
+     <label class="field">
+      🔒
+      <input aria-label="Password" placeholder="Password" type="password"/>
+     </label>
+     <button class="primary" onclick="showPetMode()">
+      Login ›
+     </button>
+     <button class="link-btn" onclick="showPetMode()">
+      Continue as guest
+     </button>
+    </div>
+    <div class="auth-form hidden" id="signupBox">
+     <span class="pill">
+      🐾 PawLux PetCare
+     </span>
+     <h2>
+      Create Account
+     </h2>
+     <p>
+      Start your upgraded pet-parent account.
+     </p>
+     <div class="tabs">
+      <button class="tab" onclick="toggleAuth('login')">
+       Login
+      </button>
+      <button class="tab active">
+       Sign Up
+      </button>
+     </div>
+     <label class="field">
+      ♙
+      <input aria-label="Full Name" placeholder="Full Name" type="text"/>
+     </label>
+     <label class="field">
+      ✉
+      <input aria-label="Email Address" placeholder="Email Address" type="email"/>
+     </label>
+     <label class="field">
+      🔒
+      <input aria-label="Password" placeholder="Password" type="password"/>
+     </label>
+     <button class="primary" onclick="showPetMode()">
+      Sign Up ›
+     </button>
+    </div>
+   </div>
+  </div>
+  <div class="screen center hidden" id="petMode">
+   <div class="mode-card glass">
+    <span class="pill">
+     Smart Personalization
+    </span>
+    <h2>
+     Choose your pet mode
+    </h2>
+    <p>
+     Everything changes automatically: products, services, articles, banners, and recommendations.
+    </p>
+    <div class="mode-grid">
+     <button aria-label="Choose Dog Mode" class="mode-option" onclick="selectMode('dog',this)">
+      <img alt="Two dogs running outdoors" src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&amp;fit=crop&amp;w=900&amp;q=80"/>
+      <div class="mode-info">
+       <h3>
+        Dog Mode 🐶
+       </h3>
+       <p>
+        Dog-only services, products, care guides, photos, and recommendations.
+       </p>
+      </div>
+     </button>
+     <button aria-label="Choose Cat Mode" class="mode-option" onclick="selectMode('cat',this)">
+      <img alt="Cat sitting on bed" src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&amp;fit=crop&amp;w=900&amp;q=80"/>
+      <div class="mode-info">
+       <h3>
+        Cat Mode 🐱
+       </h3>
+       <p>
+        Cat-only services, products, care guides, photos, and recommendations.
+       </p>
+      </div>
+     </button>
+    </div>
+    <button class="continue" disabled="" id="continueBtn" onclick="launchApp()">
+     Continue ›
+    </button>
+   </div>
+  </div>
+  <main id="app">
+   <nav class="nav">
+    <div class="nav-inner">
+     <div class="brand-left">
+      <button aria-label="Open user account" class="account-logo" onclick="openModal('accountModal')">
+       👤
+      </button>
+      <button aria-label="Go to home" class="logo" onclick="go('home')">
+       <span class="logo-mark">🐾</span>
+       <span class="logo-text">
+        <strong>PawLux</strong>
+        <small>Premium PetCare</small>
+       </span>
+      </button>
+     </div>
+     <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#shop">Shop</a>
+      <a href="#knowledge">Knowledge</a>
+      <a href="#contact">Contact</a>
+     </div>
+     <div class="nav-actions">
+      <div class="mode-toggle">
+       <button id="dogToggle" onclick="setMode('dog')">
+        Dog
+       </button>
+       <button id="catToggle" onclick="setMode('cat')">
+        Cat
+       </button>
+      </div>
+      <button aria-label="Open shopping cart" class="mini-btn cart-top" onclick="openCart()">
+       🛒
+       <span class="cart-count" id="cartCount">
+        0
+       </span>
+      </button>
+      <button aria-label="Open mobile menu" class="hamb" onclick="toggleNav()">☰</button>
+     </div>
+    </div>
+   </nav>
+   <section class="hero" id="home">
+    <div>
+     <span class="pill" id="heroBadge">
+      🐶 Dog Mode Active
+     </span>
+     <h1>
+      Luxury
+      <span>
+       pet care
+      </span>
+      meets smarter shopping.
+     </h1>
+     <p id="heroText">
+      Book dog services, shop dog essentials, read dog care guides, and manage everything from your account.
+     </p>
+     <div class="hero-actions">
+      <button class="primary" onclick="go('services')">
+       Book Appointment ›
+      </button>
+      <button class="secondary" onclick="go('shop')">
+       Shop Products ♡
+      </button>
+     </div>
+     <div class="stats">
+      <button class="stat" onclick="go('shop')">
+       <b>
+        120+
+       </b>
+       <small>
+        Dog/Cat products
+       </small>
+      </button>
+      <button class="stat" onclick="openModal('accountModal')">
+       <b>
+        24/7
+       </b>
+       <small>
+        Support UI
+       </small>
+      </button>
+      <button class="stat" onclick="openCart()">
+       <b>
+        🛒
+       </b>
+       <small>
+        Cart + checkout
+       </small>
+      </button>
+      <button class="stat" onclick="go('knowledge')">
+       <b>
+        AI
+       </b>
+       <small>
+        Recommendations
+       </small>
+      </button>
+     </div>
+    </div>
+    <div class="hero-media">
+     <img alt="Pet hero image" data-cat="image/dog/apin.jpg" data-dog="image/dog/apin.jpg" id="heroImage" src="image/dog/apin.jpg"/>
+     <button class="floating-card" onclick="go('shop')">
+      ⭐ 4.9 rating • Vouchers ready
+     </button>
+    </div>
+    <div class="home-about glass">
+     <div class="section-head compact">
+      <div>
+       <span class="pill">
+        About PawLux
+       </span>
+       <h2>
+        Premium pet care, shopping, and learning in one home.
+       </h2>
+      </div>
+      <p>
+       PawLux combines appointments, trusted services, curated products, care guides, and user account tools into one polished dog-and-cat platform.
+      </p>
+     </div>
+     <div class="about-cards">
+      <button class="about-mini" onclick="toast('Mission opened')">
+       <b>
+        🎯 Mission
+       </b>
+       <p>
+        Make pet care easier, smarter, safer, and more accessible for every pet parent.
+       </p>
+      </button>
+      <button class="about-mini" onclick="toast('Vision opened')">
+       <b>
+        ✨ Vision
+       </b>
+       <p>
+        Build a premium digital pet ecosystem for dogs, cats, owners, vets, and groomers.
+       </p>
+      </button>
+      <button class="about-mini" onclick="toast('Why choose PawLux opened')">
+       <b>
+        🏆 Why Choose Us
+       </b>
+       <p>
+        One account for shopping, appointments, wishlist, care guides, and order tracking.
+       </p>
+      </button>
+      <button class="about-mini" onclick="openModal('accountModal')">
+       <b>
+        👤 Team &amp; Profile
+       </b>
+       <p>
+        Access editable profile information, orders, appointments, and wishlist.
+       </p>
+      </button>
+     </div>
+    </div>
+   </section>
+   <section id="services">
+    <div class="section-head">
+     <div>
+      <span class="pill">
+       Services + Appointment
+      </span>
+      <h2 id="serviceTitle">
+       Dog services.
+      </h2>
+     </div>
+     <p>
+      Prices use ₱ only. Every service card is clickable and includes details, booking, date/time, and confirmation.
+     </p>
+    </div>
+    <div class="grid4" id="servicesGrid">
+    </div>
+    <div class="source-data" id="serviceSources">
+<article class="source-card" data-mode="dog" data-name="Veterinary Care" data-desc="Consultation, vaccines, deworming, dental cleaning, surgery, and emergency care." data-price="850" data-time="45–90 min" data-rating="4.7"><img src="image/dog/care.jpg" alt="Veterinary Care"></article>
+<article class="source-card" data-mode="dog" data-name="Professional Grooming" data-desc="Bath, blow dry, hair trim, nail cutting, ear cleaning, and flea treatment." data-price="650" data-time="60–120 min" data-rating="4.8"><img src="image/dog/groom.jpg" alt="Professional Grooming"></article>
+<article class="source-card" data-mode="dog" data-name="Luxury Boarding" data-desc="VIP rooms, air-conditioned suites, CCTV monitoring, playtime, and feeding schedules." data-price="1200" data-time="Per night" data-rating="4.9"><img src="image/dog/lux.jpg" alt="Luxury Boarding"></article>
+<article class="source-card" data-mode="dog" data-name="Behavior Training" data-desc="Obedience, socialization, aggression management, potty training, and advanced tricks." data-price="950" data-time="60 min" data-rating="4.9"><img src="image/dog/beh.jpg" alt="Behavior Training"></article>
+<article class="source-card" data-mode="cat" data-name="Veterinary Care" data-desc="Consultation, vaccines, deworming, dental cleaning, surgery, and emergency care." data-price="850" data-time="45–90 min" data-rating="4.7"><img src="image/cat/care.jpg" alt="Veterinary Care"></article>
+<article class="source-card" data-mode="cat" data-name="Professional Grooming" data-desc="Bath, blow dry, hair trim, nail cutting, ear cleaning, and flea treatment." data-price="650" data-time="60–120 min" data-rating="4.8"><img src="image/cat/groom.jpg" alt="Professional Grooming"></article>
+<article class="source-card" data-mode="cat" data-name="Luxury Boarding" data-desc="VIP rooms, air-conditioned suites, CCTV monitoring, playtime, and feeding schedules." data-price="1200" data-time="Per night" data-rating="4.9"><img src="image/cat/lux.jpg" alt="Luxury Boarding"></article>
+<article class="source-card" data-mode="cat" data-name="Behavior Training" data-desc="Obedience, socialization, aggression management, potty training, and advanced tricks." data-price="950" data-time="60 min" data-rating="4.9"><img src="image/cat/beh.jpg" alt="Behavior Training"></article>
+</div>
+   </section>
+   <section id="shop">
+    <div class="section-head">
+     <div>
+      <span class="pill">
+       🛍 PawLux Boutique
+      </span>
+      <h2 id="shopTitle">
+       Dog products only.
+      </h2>
+     </div>
+     <div class="shop-tools">
+      <input aria-label="Search products" class="search" id="searchInput" oninput="renderProducts()" placeholder="Search products..."/>
+      <select aria-label="Category dropdown" class="select" id="categoryFilter" onchange="renderProducts()">
+       <option value="all">
+        All Categories
+       </option>
+       <option value="Food">
+        Food
+       </option>
+       <option value="Toys &amp; Accessories">
+        Toys &amp; Accessories
+       </option>
+       <option value="Clothes">
+        Clothes
+       </option>
+       <option value="Vitamins">
+        Vitamins
+       </option>
+      </select>
+      <select aria-label="Top rated dropdown" class="select" id="sortFilter" onchange="renderProducts()">
+       <option value="featured">
+        Featured
+       </option>
+       <option value="low">
+        Price: Low to High
+       </option>
+       <option value="high">
+        Price: High to Low
+       </option>
+       <option value="rating">
+        Top Rated
+       </option>
+      </select>
+     </div>
+    </div>
+    <div class="sale-strip">
+     <span>
+      ⚡ Flash Sale: Free shipping vouchers + loyalty points
+     </span>
+     <button class="secondary" onclick="openCart()">
+      Open Cart 🛒
+     </button>
+    </div>
+    <div class="products" id="productsGrid">
+    </div>
+    <div class="source-data" id="productSources">
+<article class="source-card" data-mode="dog" data-cat="Food" data-name="IAMS Dog Food" data-price="500" data-rating="4.5" data-stock="20"><img src="image/dog/dogfd1-IAMS.jpg" alt="IAMS Dog Food"></article>
+<article class="source-card" data-mode="dog" data-cat="Food" data-name="Royal Canin Dog Food" data-price="650" data-rating="4.6" data-stock="18"><img src="image/dog/dogfd2-Royal Canin.jpg" alt="Royal Canin Dog Food"></article>
+<article class="source-card" data-mode="dog" data-cat="Food" data-name="Purina" data-price="450" data-rating="4.4" data-stock="25"><img src="image/dog/dogfd3-Purina.jpg" alt="Purina"></article>
+<article class="source-card" data-mode="dog" data-cat="Food" data-name="Pedigree" data-price="550" data-rating="4.7" data-stock="15"><img src="image/dog/dogfd4-Pedigree.jpg" alt="Pedigree"></article>
+<article class="source-card" data-mode="dog" data-cat="Food" data-name="Hill&s Science Diet" data-price="480" data-rating="4.3" data-stock="22"><img src="image/dog/dogfd5-Hill_s Science Diet.jpg" alt="Hills Science Diet"></article>
+<article class="source-card" data-mode="dog" data-cat="Food" data-name="Blue Buffalo" data-price="520" data-rating="4.5" data-stock="19"><img src="image/dog/dogfd6-Blue Buffalo.jpg" alt="Blue Buffalo"></article>
+<article class="source-card" data-mode="dog" data-cat="Food" data-name="Acana" data-price="610" data-rating="4.6" data-stock="16"><img src="image/dog/dogfd7-Acana.jpg" alt="Acana"></article>
+<article class="source-card" data-mode="dog" data-cat="Food" data-name="Orijen" data-price="430" data-rating="4.2" data-stock="28"><img src="image/dog/dogfd8-Orijen.jpg" alt="Orijen"></article>
+<article class="source-card" data-mode="dog" data-cat="Food" data-name="Taste of the Wild" data-price="470" data-rating="4.4" data-stock="21"><img src="image/dog/dogfd9-Taste of the Wild.jpg" alt="Taste of the Wild"></article>
+<article class="source-card" data-mode="dog" data-cat="Food" data-name="Eukanuba" data-price="690" data-rating="4.8" data-stock="10"><img src="image/dog/dogfd10-Eukanuba.jpg" alt="Eukanuba"></article>
+<article class="source-card" data-mode="dog" data-cat="Food" data-name="Beneful" data-price="730" data-rating="4.9" data-stock="9"><img src="image/dog/dogfd11-Beneful.jpg" alt="Beneful"></article>
+<article class="source-card" data-mode="dog" data-cat="Food" data-name="Aozi" data-price="560" data-rating="4.5" data-stock="17"><img src="image/dog/dogfd15-Aozi.jpg" alt="Aozi"></article>
+<article class="source-card" data-mode="dog" data-cat="Food" data-name="Nutri Chunks" data-price="510" data-rating="4.4" data-stock="24"><img src="image/dog/dogfd12-Nutri Chunks.jpg" alt="Nutri Chunks"></article>
+<article class="source-card" data-mode="dog" data-cat="Food" data-name="Vitality" data-price="620" data-rating="4.7" data-stock="13"><img src="image/dog/dogfd13-Vitality.jpg" alt="Vitality"></article>
+<article class="source-card" data-mode="dog" data-cat="Food" data-name="Holistic Recipe" data-price="580" data-rating="4.6" data-stock="14"><img src="image/dog/dogfd14-Holistic Recipe.jpg" alt="Holistic Recipe"></article>
+<article class="source-card" data-mode="cat" data-cat="Food" data-name="Cat biscuit" data-price="450" data-rating="4.5" data-stock="20"><img src="image/cat/c1.jpg" alt="Cat biscuit"></article>
+<article class="source-card" data-mode="cat" data-cat="Food" data-name="Fresh cat treats" data-price="670" data-rating="4.7" data-stock="18"><img src="image/cat/c2.jpg" alt="Fresh cat treats"></article>
+<article class="source-card" data-mode="cat" data-cat="Food" data-name="Cat wet food pouch" data-price="520" data-rating="4.6" data-stock="17"><img src="image/cat/c3.jpg" alt="Cat wet food pouch"></article>
+<article class="source-card" data-mode="cat" data-cat="Food" data-name="Pet Snack" data-price="480" data-rating="4.4" data-stock="22"><img src="image/cat/c4.jpg" alt="Pet Snack"></article>
+<article class="source-card" data-mode="cat" data-cat="Food" data-name="Lielo pet snack" data-price="530" data-rating="4.5" data-stock="16"><img src="image/cat/c5.jpg" alt="Lielo pet snack"></article>
+<article class="source-card" data-mode="cat" data-cat="Food" data-name="Canned cat stock" data-price="490" data-rating="4.3" data-stock="25"><img src="image/cat/c9.jpg" alt="Canned cat stock"></article>
+<article class="source-card" data-mode="cat" data-cat="Food" data-name="Mr.Vet" data-price="640" data-rating="4.8" data-stock="12"><img src="image/cat/c7.jpg" alt="Mr.Vet"></article>
+<article class="source-card" data-mode="cat" data-cat="Food" data-name="Supremacy canned soup" data-price="510" data-rating="4.5" data-stock="21"><img src="image/cat/c8.jpg" alt="Supremacy canned soup"></article>
+<article class="source-card" data-mode="cat" data-cat="Food" data-name="Pet record meow feast" data-price="470" data-rating="4.4" data-stock="19"><img src="image/cat/c6.jpg" alt="Pet record meow feast"></article>
+<article class="source-card" data-mode="cat" data-cat="Food" data-name="Pet cat dental treats snack" data-price="710" data-rating="4.9" data-stock="9"><img src="image/cat/c10.jpg" alt="Pet cat dental treats snack"></article>
+<article class="source-card" data-mode="cat" data-cat="Food" data-name="Meow goal milk strips" data-price="590" data-rating="4.6" data-stock="14"><img src="image/cat/c11.jpg" alt="Meow goal milk strips"></article>
+<article class="source-card" data-mode="cat" data-cat="Food" data-name="Meat pure natural organic" data-price="560" data-rating="4.7" data-stock="15"><img src="image/cat/c12.jpg" alt="Meat pure natural organic"></article>
+<article class="source-card" data-mode="cat" data-cat="Food" data-name="Replenish" data-price="620" data-rating="4.8" data-stock="11"><img src="image/cat/c13.jpg" alt="Replenish"></article>
+<article class="source-card" data-mode="cat" data-cat="Food" data-name="Cat treat kitten snack" data-price="500" data-rating="4.5" data-stock="18"><img src="image/cat/c14.jpg" alt="Cat treat kitten snack"></article>
+<article class="source-card" data-mode="cat" data-cat="Food" data-name="Fresh meat lava can" data-price="650" data-rating="4.8" data-stock="10"><img src="image/cat/c15.jpg" alt="Fresh meat lava can"></article>
+<article class="source-card" data-mode="dog" data-cat="Vitamins" data-name="LC-Vit Plus" data-price="320" data-rating="4.5" data-stock="20"><img src="image/dog/vtm1-LC-Vit Plus.jpg" alt="LC-Vit Plus"></article>
+<article class="source-card" data-mode="dog" data-cat="Vitamins" data-name="Papi MVP Vitamins" data-price="450" data-rating="4.6" data-stock="18"><img src="image/dog/vtm2-Papi MVP.jpg" alt="Papi MVP Vitamins"></article>
+<article class="source-card" data-mode="dog" data-cat="Vitamins" data-name="Floof Pets 8-in-1" data-price="280" data-rating="4.4" data-stock="25"><img src="image/dog/vtm3-Floof Pets 8-in-1.jpg" alt="Floof Pets 8-in-1"></article>
+<article class="source-card" data-mode="dog" data-cat="Vitamins" data-name="Dr. Shiba Pro Immune" data-price="520" data-rating="4.7" data-stock="16"><img src="image/dog/vtm4-Dr. Shiba Pro Immune.jpg" alt="Dr. Shiba Pro Immune"></article>
+<article class="source-card" data-mode="dog" data-cat="Vitamins" data-name="Canine Plus Senior" data-price="390" data-rating="4.5" data-stock="19"><img src="image/dog/vtm5-Canine Plus Senior.jpg" alt="Canine Plus Senior"></article>
+<article class="source-card" data-mode="dog" data-cat="Vitamins" data-name="Nutri-vet Multi-vite" data-price="410" data-rating="4.6" data-stock="17"><img src="image/dog/vtm6-Nutri-vet Multi-vite.jpg" alt="Nutri-vet Multi-vite"></article>
+<article class="source-card" data-mode="dog" data-cat="Vitamins" data-name="Zesty Paws 11-in-1" data-price="340" data-rating="4.3" data-stock="23"><img src="image/dog/vtm7-Zesty Paws 11-in-1.jpg" alt="Zesty Paws 11-in-1"></article>
+<article class="source-card" data-mode="dog" data-cat="Vitamins" data-name="Prt Honesty 10-for-1" data-price="470" data-rating="4.7" data-stock="14"><img src="image/dog/vtm8-PrtHonesty 10-for-1.jpg" alt="Prt Honesty 10-for-1"></article>
+<article class="source-card" data-mode="dog" data-cat="Vitamins" data-name="Canine Multi Pro Chew" data-price="360" data-rating="4.4" data-stock="21"><img src="image/dog/vtm9-Canine Multi Pro Chew.jpg" alt="Canine Multi Pro Chew"></article>
+<article class="source-card" data-mode="dog" data-cat="Vitamins" data-name="Wholistic Canine Complete" data-price="530" data-rating="4.8" data-stock="12"><img src="image/dog/vtm10-Wholistic Canine Complete.jpg" alt="Wholistic Canine Complete"></article>
+<article class="source-card" data-mode="dog" data-cat="Vitamins" data-name="Denamarin" data-price="610" data-rating="4.9" data-stock="10"><img src="image/dog/vtm11-Denamarin.jpg" alt="Denamarin"></article>
+<article class="source-card" data-mode="dog" data-cat="Vitamins" data-name="Vetri-SAMe 90" data-price="420" data-rating="4.5" data-stock="18"><img src="image/dog/vtm12-Vetri-SAMe 90.jpg" alt="Vetri-SAMe 90"></article>
+<article class="source-card" data-mode="dog" data-cat="Vitamins" data-name="Glycoflex3" data-price="370" data-rating="4.4" data-stock="20"><img src="image/dog/vtm13-glycoflex3.jpg" alt="Glycoflex3"></article>
+<article class="source-card" data-mode="dog" data-cat="Vitamins" data-name="Cosequin Max Strength" data-price="490" data-rating="4.7" data-stock="13"><img src="image/dog/vtm14-Cosequin Max Strength.jpg" alt="Cosequin Max Strength"></article>
+<article class="source-card" data-mode="dog" data-cat="Vitamins" data-name="Nordic Naturals Omega-3 Pet" data-price="550" data-rating="4.8" data-stock="11"><img src="image/dog/vtm15-Nordic Naturals Omega-3 Pet.jpg" alt="Nordic Naturals Omega-3 Pet"></article>
+<article class="source-card" data-mode="cat" data-cat="Vitamins" data-name="Zesty Paw" data-price="310" data-rating="4.5" data-stock="20"><img src="image/cat/v1.jpg" alt="Zesty Paw"></article>
+<article class="source-card" data-mode="cat" data-cat="Vitamins" data-name="LC-VIT Plus" data-price="440" data-rating="4.6" data-stock="18"><img src="image/cat/v2.jpg" alt="LC-VIT Plus"></article>
+<article class="source-card" data-mode="cat" data-cat="Vitamins" data-name="Welactin Feline" data-price="270" data-rating="4.4" data-stock="24"><img src="image/cat/v3.jpg" alt="Welactin Feline"></article>
+<article class="source-card" data-mode="cat" data-cat="Vitamins" data-name="Floof Pets" data-price="510" data-rating="4.7" data-stock="16"><img src="image/cat/v4.jpg" alt="Floof Pets"></article>
+<article class="source-card" data-mode="cat" data-cat="Vitamins" data-name="Papi MVP" data-price="380" data-rating="4.5" data-stock="19"><img src="image/cat/v5.jpg" alt="Papi MVP"></article>
+<article class="source-card" data-mode="cat" data-cat="Vitamins" data-name="VaxiLife" data-price="400" data-rating="4.6" data-stock="17"><img src="image/cat/v6.jpg" alt="VaxiLife"></article>
+<article class="source-card" data-mode="cat" data-cat="Vitamins" data-name="Nutri-Plus Gel" data-price="330" data-rating="4.3" data-stock="22"><img src="image/cat/v7.jpg" alt="Nutri-Plus Gel"></article>
+<article class="source-card" data-mode="cat" data-cat="Vitamins" data-name="Cosequin" data-price="460" data-rating="4.7" data-stock="14"><img src="image/cat/v8.jpg" alt="Cosequin"></article>
+<article class="source-card" data-mode="cat" data-cat="Vitamins" data-name="Multi-Vite" data-price="350" data-rating="4.4" data-stock="20"><img src="image/cat/v9.jpg" alt="Multi-Vite"></article>
+<article class="source-card" data-mode="cat" data-cat="Vitamins" data-name="NatureVet" data-price="520" data-rating="4.8" data-stock="12"><img src="image/cat/v10.jpg" alt="NatureVet"></article>
+<article class="source-card" data-mode="cat" data-cat="Pet-Tabs" data-name="JointFlex Cat Vitamins" data-price="600" data-rating="4.9" data-stock="10"><img src="image/cat/v11.jpg" alt="JointFlex Cat Vitamins"></article>
+<article class="source-card" data-mode="cat" data-cat="Vitamins" data-name="Vetri Science" data-price="410" data-rating="4.5" data-stock="18"><img src="image/cat/v12.jpg" alt="Vetri Science"></article>
+<article class="source-card" data-mode="cat" data-cat="Vitamins" data-name="Pet Honesty Multivitamin" data-price="360" data-rating="4.4" data-stock="19"><img src="image/cat/v13.jpg" alt="Pet Honesty Multivitamin"></article>
+<article class="source-card" data-mode="cat" data-cat="Vitamins" data-name="Glycogen" data-price="480" data-rating="4.7" data-stock="13"><img src="image/cat/v14.jpg" alt="Glycogen"></article>
+<article class="source-card" data-mode="cat" data-cat="Vitamins" data-name="Dasuquin" data-price="540" data-rating="4.8" data-stock="11"><img src="image/cat/v15.jpg" alt="Dasuquin"></article>
+<article class="source-card" data-mode="cat" data-cat="Toys &amp; Accessories" data-name="Carrier Bag" data-price="250" data-rating="4.5" data-stock="20"><img src="image/cat/t1.jpg" alt="Carrier Bag"></article>
+<article class="source-card" data-mode="cat" data-cat="Toys &amp; Accessories" data-name="Water Fountain" data-price="320" data-rating="4.6" data-stock="18"><img src="image/cat/t2.jpg" alt="Water Fountain"></article>
+<article class="source-card" data-mode="cat" data-cat="Toys &amp; Accessories" data-name="Litter Box" data-price="280" data-rating="4.4" data-stock="22"><img src="image/cat/t3.jpg" alt="Litter Box"></article>
+<article class="source-card" data-mode="cat" data-cat="Toys &amp; Accessories" data-name="Laser Toy" data-price="350" data-rating="4.7" data-stock="15"><img src="image/cat/t4.jpg" alt="Laser Toy"></article>
+<article class="source-card" data-mode="cat" data-cat="Toys &amp; Accessories" data-name="Ball Toy" data-price="260" data-rating="4.5" data-stock="24"><img src="image/cat/t5.jpg" alt="Ball Toy"></article>
+<article class="source-card" data-mode="cat" data-cat="Toys &amp; Accessories" data-name="Catnip Toy" data-price="420" data-rating="4.8" data-stock="12"><img src="image/cat/t6.jpg" alt="Catnip Toy"></article>
+<article class="source-card" data-mode="cat" data-cat="Toys &amp; Accessories" data-name="Tunnel Toy" data-price="300" data-rating="4.4" data-stock="20"><img src="image/cat/t7.jpg" alt="Tunnel Toy"></article>
+<article class="source-card" data-mode="cat" data-cat="Toys &amp; Accessories" data-name="Cat Bed" data-price="550" data-rating="4.7" data-stock="14"><img src="image/cat/t8.jpg" alt="Cat Bed"></article>
+<article class="source-card" data-mode="cat" data-cat="Toys &amp; Accessories" data-name="Cat Teaser Wand" data-price="620" data-rating="4.8" data-stock="13"><img src="image/cat/t9.jpg" alt="Cat Teaser Wand"></article>
+<article class="source-card" data-mode="cat" data-cat="Toys &amp; Accessories" data-name="Scratching Post" data-price="390" data-rating="4.5" data-stock="17"><img src="image/cat/t10.jpg" alt="Scratching Post"></article>
+<article class="source-card" data-mode="cat" data-cat="Toys &amp; Accessories" data-name="Mouse Toy" data-price="450" data-rating="4.6" data-stock="16"><img src="image/cat/t11.jpg" alt="Mouse Toy"></article>
+<article class="source-card" data-mode="cat" data-cat="Toys &amp; Accessories" data-name="Food Bowl" data-price="780" data-rating="4.9" data-stock="10"><img src="image/cat/t12.jpg" alt="Food Bowl"></article>
+<article class="source-card" data-mode="cat" data-cat="Toys &amp; Accessories" data-name="Collar" data-price="1200" data-rating="5" data-stock="8"><img src="image/cat/t13.jpg" alt="Collar"></article>
+<article class="source-card" data-mode="cat" data-cat="Toys &amp; Accessories" data-name="Cat Brush" data-price="270" data-rating="4.3" data-stock="25"><img src="image/cat/t14.jpg" alt="Cat Brush"></article>
+<article class="source-card" data-mode="cat" data-cat="Toys &amp; Accessories" data-name="ID Tag" data-price="1500" data-rating="4.9" data-stock="6"><img src="image/cat/t15.jpg" alt="ID Tag"></article>
+<article class="source-card" data-mode="dog" data-cat="Toys &amp; Accessories" data-name="ID Tag" data-price="250" data-rating="4.5" data-stock="20"><img src="image/dog/1.jpg" alt="ID Tag"></article>
+<article class="source-card" data-mode="dog" data-cat="Toys &amp; Accessories" data-name="Tug Toy" data-price="320" data-rating="4.6" data-stock="18"><img src="image/dog/2.jpg" alt="Tug Toy"></article>
+<article class="source-card" data-mode="dog" data-cat="Toys &amp; Accessories" data-name="Dog Bed" data-price="280" data-rating="4.4" data-stock="22"><img src="image/dog/3.jpg" alt="Dog Bed"></article>
+<article class="source-card" data-mode="dog" data-cat="Toys &amp; Accessories" data-name="Collar" data-price="350" data-rating="4.7" data-stock="15"><img src="image/dog/4.jpg" alt="Collar"></article>
+<article class="source-card" data-mode="dog" data-cat="Toys &amp; Accessories" data-name="Leash" data-price="260" data-rating="4.5" data-stock="24"><img src="image/dog/5.jpg" alt="Leash"></article>
+<article class="source-card" data-mode="dog" data-cat="Toys &amp; Accessories" data-name="Tennis Ball" data-price="420" data-rating="4.8" data-stock="12"><img src="image/dog/6.jpg" alt="Tennis Ball"></article>
+<article class="source-card" data-mode="dog" data-cat="Toys &amp; Accessories" data-name="Treat Pouch" data-price="300" data-rating="4.4" data-stock="20"><img src="image/dog/7.jpg" alt="Treat Pouch"></article>
+<article class="source-card" data-mode="dog" data-cat="Toys &amp; Accessories" data-name="Squeacky Toy" data-price="550" data-rating="4.7" data-stock="14"><img src="image/dog/8.jpg" alt="Squeacky Toy"></article>
+<article class="source-card" data-mode="dog" data-cat="Toys &amp; Accessories" data-name="Rope Toy" data-price="620" data-rating="4.8" data-stock="13"><img src="image/dog/9.jpg" alt="Rope Toy"></article>
+<article class="source-card" data-mode="dog" data-cat="Toys &amp; Accessories" data-name="Leash and Harness" data-price="390" data-rating="4.5" data-stock="17"><img src="image/dog/10.jpg" alt="Leash and Harness"></article>
+<article class="source-card" data-mode="dog" data-cat="Toys &amp; Accessories" data-name="Chew Toy" data-price="450" data-rating="4.6" data-stock="16"><img src="image/dog/11.jpg" alt="Chew Toy"></article>
+<article class="source-card" data-mode="dog" data-cat="Toys &amp; Accessories" data-name="Puzzle Toy" data-price="780" data-rating="4.9" data-stock="10"><img src="image/dog/12.jpg" alt="Puzzle Toy"></article>
+<article class="source-card" data-mode="dog" data-cat="Toys &amp; Accessories" data-name="Frfisbee" data-price="1200" data-rating="5" data-stock="8"><img src="image/dog/13.jpg" alt="Frfisbee"></article>
+<article class="source-card" data-mode="dog" data-cat="Toys &amp; Accessories" data-name="Water Dispenser" data-price="270" data-rating="4.3" data-stock="25"><img src="image/dog/14.jpg" alt="Water Dispenser"></article>
+<article class="source-card" data-mode="dog" data-cat="Toys &amp; Accessories" data-name="Food Bowl" data-price="1500" data-rating="4.9" data-stock="6"><img src="image/dog/15.jpg" alt="Food Bowl"></article>
+<article class="source-card" data-mode="cat" data-cat="Clothes" data-name="Cat Cute Dress" data-price="450" data-rating="4.5" data-stock="20"><img src="image/cat/d1.jpg" alt="Cat Cute Dress"></article>
+<article class="source-card" data-mode="cat" data-cat="Clothes" data-name="Knitted Sando" data-price="520" data-rating="4.7" data-stock="18"><img src="image/cat/d2.jpg" alt="Knitted Sando"></article>
+<article class="source-card" data-mode="cat" data-cat="Clothes" data-name="Cute Summer Wear" data-price="480" data-rating="4.6" data-stock="16"><img src="image/cat/d3.jpg" alt="Cute Summer Wear"></article>
+<article class="source-card" data-mode="cat" data-cat="Clothes" data-name="Classic Cute Hoddie" data-price="350" data-rating="4.4" data-stock="22"><img src="image/cat/d4.jpg" alt="Classic Cute Hoddie"></article>
+<article class="source-card" data-mode="cat" data-cat="Clothes" data-name="Heart Hoddie" data-price="690" data-rating="4.8" data-stock="12"><img src="image/cat/d5.jpg" alt="Heart Hoddie"></article>
+<article class="source-card" data-mode="cat" data-cat="Clothes" data-name="Soft Polo" data-price="430" data-rating="4.5" data-stock="19"><img src="image/cat/d6.jpg" alt="Soft Polo"></article>
+<article class="source-card" data-mode="cat" data-cat="Clothes" data-name="Cute Sleepwear Outfit" data-price="390" data-rating="4.3" data-stock="24"><img src="image/cat/d7.jpg" alt="Cute Sleepwear Outfit"></article>
+<article class="source-card" data-mode="cat" data-cat="Clothes" data-name="Cute Formal Dress" data-price="560" data-rating="4.7" data-stock="14"><img src="image/cat/d8.jpg" alt="Cute Formal Dress"></article>
+<article class="source-card" data-mode="cat" data-cat="Clothes" data-name="Classic Sando Hoddie" data-price="320" data-rating="4.2" data-stock="26"><img src="image/cat/d9.jpg" alt="Classic Sando Hoddie"></article>
+<article class="source-card" data-mode="cat" data-cat="Clothes" data-name="Cute Polo Longsleeve" data-price="750" data-rating="4.9" data-stock="9"><img src="image/cat/d10.jpg" alt="Cute Polo Longsleeve"></article>
+<article class="source-card" data-mode="cat" data-cat="Clothes" data-name="Mini Sleapwear" data-price="470" data-rating="4.6" data-stock="17"><img src="image/cat/d11.jpg" alt="Mini Sleapwear"></article>
+<article class="source-card" data-mode="cat" data-cat="Clothes" data-name="Plain Hoddie Sleapwear" data-price="680" data-rating="4.8" data-stock="11"><img src="image/cat/d12.jpg" alt="Plain Hoddie Sleapwear"></article>
+<article class="source-card" data-mode="cat" data-cat="Clothes" data-name="Christmas Cat Outfit" data-price="720" data-rating="4.9" data-stock="10"><img src="image/cat/d13.jpg" alt="Christmas Cat Outfit"></article>
+<article class="source-card" data-mode="cat" data-cat="Clothes" data-name="Set Sleapwear" data-price="590" data-rating="4.7" data-stock="13"><img src="image/cat/d14.jpg" alt="Set Sleapwear"></article>
+<article class="source-card" data-mode="cat" data-cat="Clothes" data-name="Cute Cat Polo" data-price="510" data-rating="4.5" data-stock="15"><img src="image/cat/d15.jpg" alt="Cute Cat Polo"></article>
+<article class="source-card" data-mode="dog" data-cat="Clothes" data-name="Striped Polo Pet Shirt" data-price="420" data-rating="4.5" data-stock="20"><img src="image/dog/d1.jpg" alt="Striped Polo Pet Shirt"></article>
+<article class="source-card" data-mode="dog" data-cat="Clothes" data-name="Spider-Man Dog Shirt" data-price="450" data-rating="4.6" data-stock="18"><img src="image/dog/d2.jpg" alt="Spider-Man Dog Shirt"></article>
+<article class="source-card" data-mode="dog" data-cat="Clothes" data-name="Batman Puppy Shirt" data-price="520" data-rating="4.7" data-stock="16"><img src="image/dog/d3.jpg" alt="Batman Puppy Shirt"></article>
+<article class="source-card" data-mode="dog" data-cat="Clothes" data-name="Luxury Brown Sweater" data-price="780" data-rating="4.9" data-stock="10"><img src="image/dog/d4.jpg" alt="Luxury Brown Sweater"></article>
+<article class="source-card" data-mode="dog" data-cat="Clothes" data-name="Elephant Ear Hoodie" data-price="620" data-rating="4.8" data-stock="14"><img src="image/dog/d5.jpg" alt="Elephant Ear Hoodie"></article>
+<article class="source-card" data-mode="dog" data-cat="Clothes" data-name="Brown Fleece Dog Vest" data-price="560" data-rating="4.7" data-stock="15"><img src="image/dog/d6.jpg" alt="Brown Fleece Dog Vest"></article>
+<article class="source-card" data-mode="dog" data-cat="Clothes" data-name="Teddy Bear Hoodie" data-price="690" data-rating="4.9" data-stock="12"><img src="image/dog/d7.jpg" alt="Teddy Bear Hoodie"></article>
+<article class="source-card" data-mode="dog" data-cat="Clothes" data-name="Formal Polo Pet Shirt" data-price="480" data-rating="4.5" data-stock="19"><img src="image/dog/d8.jpg" alt="Formal Polo Pet Shirt"></article>
+<article class="source-card" data-mode="dog" data-cat="Clothes" data-name="Luxury Knit Sweater" data-price="820" data-rating="5" data-stock="8"><img src="image/dog/d9.jpg" alt="Luxury Knit Sweater"></article>
+<article class="source-card" data-mode="dog" data-cat="Clothes" data-name="Dinosaur Pajama Suit" data-price="740" data-rating="4.8" data-stock="11"><img src="image/dog/d10.jpg" alt="Dinosaur Pajama Suit"></article>
+<article class="source-card" data-mode="dog" data-cat="Clothes" data-name="Pet Pajama Set" data-price="530" data-rating="4.6" data-stock="17"><img src="image/dog/d11.jpg" alt="Pet Pajama Set"></article>
+<article class="source-card" data-mode="dog" data-cat="Clothes" data-name="Frog Hoodie Costume" data-price="610" data-rating="4.7" data-stock="13"><img src="image/dog/d12.jpg" alt="Frog Hoodie Costume"></article>
+<article class="source-card" data-mode="dog" data-cat="Clothes" data-name="Bear Hoodie Jacket" data-price="590" data-rating="4.7" data-stock="14"><img src="image/dog/d13.jpg" alt="Bear Hoodie Jacket"></article>
+<article class="source-card" data-mode="dog" data-cat="Clothes" data-name="Soccer Jersey Outfit" data-price="680" data-rating="4.8" data-stock="12"><img src="image/dog/d14.jpg" alt="Soccer Jersey Outfit"></article>
+<article class="source-card" data-mode="dog" data-cat="Clothes" data-name="Nike Dog Hoodie" data-price="850" data-rating="5" data-stock="9"><img src="image/dog/d15.jpg" alt="Nike Dog Hoodie"></article>
+</div>
+   </section>
+   <section id="knowledge">
+    <div class="section-head">
+     <div>
+      <span class="pill">
+       Knowledge Center
+      </span>
+      <h2 id="knowledgeTitle">
+       Dog care guides.
+      </h2>
+     </div>
+     <p>
+      Explore longer pet-care guides with search, filters, real photos, and helpful reading modals.
+     </p>
+    </div>
+    <div class="care-tools">
+     <input class="search" id="articleSearch" oninput="renderArticles()" placeholder="Search care guides..."/>
+     <select class="select" id="articleCat" onchange="renderArticles()">
+      <option value="all">
+       All Guides
+      </option>
+      <option>
+       Health
+      </option>
+      <option>
+       Nutrition
+      </option>
+      <option>
+       Training
+      </option>
+      <option>
+       Emergency
+      </option>
+      <option>
+       Grooming
+      </option>
+      <option>
+       Boarding
+      </option>
+     </select>
+    </div>
+    <div class="articles" id="articlesGrid">
+    </div>
+    <div class="source-data" id="articleSources">
+<article class="source-card" data-mode="dog" data-title="Dog Vaccination Schedule" data-cat="Health" data-summary="A complete and detailed dog care guide for health routines, safety, and daily pet-parent decisions." data-body="This health guide helps dog owners build a safe and consistent care routine. It explains what to prepare, what signs to watch, how to keep your pet comfortable, and when to ask a veterinarian or trained pet-care professional for help. Use it as a simple PawLux checklist for daily care, appointments, shopping, and emergency planning."><img src="image/dog/avac.jpg" alt="Dog Vaccination Schedule"></article>
+<article class="source-card" data-mode="dog" data-title="Healthy Dog Nutrition" data-cat="Nutrition" data-summary="A complete and detailed dog care guide for nutrition routines, safety, and daily pet-parent decisions." data-body="This nutrition guide helps dog owners build a safe and consistent care routine. It explains what to prepare, what signs to watch, how to keep your pet comfortable, and when to ask a veterinarian or trained pet-care professional for help. Use it as a simple PawLux checklist for daily care, appointments, shopping, and emergency planning."><img src="image/dog/ahealt.jpg" alt="Healthy Dog Nutrition"></article>
+<article class="source-card" data-mode="dog" data-title="Training a Calm Puppy" data-cat="Training" data-summary="A complete and detailed dog care guide for training routines, safety, and daily pet-parent decisions." data-body="This training guide helps dog owners build a safe and consistent care routine. It explains what to prepare, what signs to watch, how to keep your pet comfortable, and when to ask a veterinarian or trained pet-care professional for help. Use it as a simple PawLux checklist for daily care, appointments, shopping, and emergency planning."><img src="image/dog/atrain.jpg" alt="Training a Calm Puppy"></article>
+<article class="source-card" data-mode="dog" data-title="Emergency Signs in Dogs" data-cat="Emergency" data-summary="A complete and detailed dog care guide for emergency routines, safety, and daily pet-parent decisions." data-body="This emergency guide helps dog owners build a safe and consistent care routine. It explains what to prepare, what signs to watch, how to keep your pet comfortable, and when to ask a veterinarian or trained pet-care professional for help. Use it as a simple PawLux checklist for daily care, appointments, shopping, and emergency planning."><img src="image/dog/asign.jpg" alt="Emergency Signs in Dogs"></article>
+<article class="source-card" data-mode="dog" data-title="Grooming Long-Hair Dogs" data-cat="Grooming" data-summary="A complete and detailed dog care guide for grooming routines, safety, and daily pet-parent decisions." data-body="This grooming guide helps dog owners build a safe and consistent care routine. It explains what to prepare, what signs to watch, how to keep your pet comfortable, and when to ask a veterinarian or trained pet-care professional for help. Use it as a simple PawLux checklist for daily care, appointments, shopping, and emergency planning."><img src="image/dog/agroom.jpg" alt="Grooming Long-Hair Dogs"></article>
+<article class="source-card" data-mode="dog" data-title="Boarding Checklist for Dogs" data-cat="Boarding" data-summary="A complete and detailed dog care guide for boarding routines, safety, and daily pet-parent decisions." data-body="This boarding guide helps dog owners build a safe and consistent care routine. It explains what to prepare, what signs to watch, how to keep your pet comfortable, and when to ask a veterinarian or trained pet-care professional for help. Use it as a simple PawLux checklist for daily care, appointments, shopping, and emergency planning."><img src="image/dog/aboard.jpg" alt="Boarding Checklist for Dogs"></article>
+<article class="source-card" data-mode="cat" data-title="Cat Vaccination Schedule" data-cat="Health" data-summary="A complete and detailed cat care guide for health routines, safety, and daily pet-parent decisions." data-body="This health guide helps cat owners build a safe and consistent care routine. It explains what to prepare, what signs to watch, how to keep your pet comfortable, and when to ask a veterinarian or trained pet-care professional for help. Use it as a simple PawLux checklist for daily care, appointments, shopping, and emergency planning."><img src="image/cat/vac.jpg" alt="Cat Vaccination Schedule"></article>
+<article class="source-card" data-mode="cat" data-title="Healthy Cat Nutrition" data-cat="Nutrition" data-summary="A complete and detailed cat care guide for nutrition routines, safety, and daily pet-parent decisions." data-body="This nutrition guide helps cat owners build a safe and consistent care routine. It explains what to prepare, what signs to watch, how to keep your pet comfortable, and when to ask a veterinarian or trained pet-care professional for help. Use it as a simple PawLux checklist for daily care, appointments, shopping, and emergency planning."><img src="image/cat/afoof.jpg" alt="Healthy Cat Nutrition"></article>
+<article class="source-card" data-mode="cat" data-title="Litter Training Tips" data-cat="Training" data-summary="A complete and detailed cat care guide for training routines, safety, and daily pet-parent decisions." data-body="This training guide helps cat owners build a safe and consistent care routine. It explains what to prepare, what signs to watch, how to keep your pet comfortable, and when to ask a veterinarian or trained pet-care professional for help. Use it as a simple PawLux checklist for daily care, appointments, shopping, and emergency planning."><img src="image/cat/train.jpg" alt="Litter Training Tips"></article>
+<article class="source-card" data-mode="cat" data-title="Emergency Signs in Cats" data-cat="Emergency" data-summary="A complete and detailed cat care guide for emergency routines, safety, and daily pet-parent decisions." data-body="This emergency guide helps cat owners build a safe and consistent care routine. It explains what to prepare, what signs to watch, how to keep your pet comfortable, and when to ask a veterinarian or trained pet-care professional for help. Use it as a simple PawLux checklist for daily care, appointments, shopping, and emergency planning."><img src="image/cat/sign.jpg" alt="Emergency Signs in Cats"></article>
+<article class="source-card" data-mode="cat" data-title="Grooming Long-Hair Cats" data-cat="Grooming" data-summary="A complete and detailed cat care guide for grooming routines, safety, and daily pet-parent decisions." data-body="This grooming guide helps cat owners build a safe and consistent care routine. It explains what to prepare, what signs to watch, how to keep your pet comfortable, and when to ask a veterinarian or trained pet-care professional for help. Use it as a simple PawLux checklist for daily care, appointments, shopping, and emergency planning."><img src="image/cat/grom.jpg" alt="Grooming Long-Hair Cats"></article>
+<article class="source-card" data-mode="cat" data-title="Boarding Checklist for Cats" data-cat="Boarding" data-summary="A complete and detailed cat care guide for boarding routines, safety, and daily pet-parent decisions." data-body="This boarding guide helps cat owners build a safe and consistent care routine. It explains what to prepare, what signs to watch, how to keep your pet comfortable, and when to ask a veterinarian or trained pet-care professional for help. Use it as a simple PawLux checklist for daily care, appointments, shopping, and emergency planning."><img src="image/cat/bor.jpg" alt="Boarding Checklist for Cats"></article>
+</div>
+   </section>
+   <section id="contact">
+    <div class="contact-box">
+     <div>
+      <span class="pill">
+       Contact &amp; Support
+      </span>
+      <h2 style="font-size:46px;margin:18px 0">
+       We’re just a paw away.
+      </h2>
+      <p>
+       Emergency hotline: 0917-PAWLUX • Open daily 8:00 AM–9:00 PM • Quezon City, Philippines
+      </p>
+      <div class="contact-grid">
+       <button class="contact-mini" onclick="toast('Calling PawLux hotline')">
+        <b>
+         📞 Call Us
+        </b>
+        <br/>
+        0917-PAWLUX
+       </button>
+       <button class="contact-mini" onclick="toast('Location opened')">
+        <b>
+         📍 Location
+        </b>
+        <br/>
+        Quezon City, PH
+       </button>
+       <button class="contact-mini" onclick="toast('Business hours opened')">
+        <b>
+         ⏰ Hours
+        </b>
+        <br/>
+        8 AM – 9 PM
+       </button>
+      </div>
+      <button class="map" onclick="toast('Map opened')">
+       Google Maps Placeholder
+       <br/>
+       📍 PawLux Premium PetCare, Quezon City
+      </button>
+     </div>
+     <form class="contact-form" onsubmit="event.preventDefault();toast('Message sent!')">
+      <input aria-label="Your Name" placeholder="Your Name" required=""/>
+      <input aria-label="Email Address" placeholder="Email Address" required=""/>
+      <textarea aria-label="Message" placeholder="Tell us about your pet..." required=""></textarea>
+      <button class="primary">
+       Send Message ✈
+      </button>
+     </form>
+    </div>
+   </section>
+   <footer class="footer">
+    <div>
+     <b>
+      PawLux PetCare
+     </b>
+     <p>
+      Premium dog and cat ecosystem for services, shopping, care guides, appointments, and user profiles.
+     </p>
+     <div class="footer-bottom">
+      <span>
+       © 2026 PawLux PetCare. All rights reserved.
+      </span>
+      <span>
+       Secure checkout • Pet-first care • Mobile responsive
+      </span>
+     </div>
+    </div>
+    <div class="footer-actions">
+     <button class="mini-btn danger" onclick="logout()">
+      Logout
+     </button>
+    </div>
+   </footer>
+   <button aria-label="Floating cart" class="float-cart" onclick="openCart()">
+    🛒
+   </button>
+  </main>
+  <aside aria-label="Shopping cart drawer" class="drawer" id="cartDrawer">
+   <div class="drawer-head">
+    <h2>
+     Shopping Cart
+    </h2>
+    <button class="close" onclick="closeCart()">
+     ×
+    </button>
+   </div>
+   <div class="cart-list" id="cartList">
+   </div>
+   <h3 id="cartTotal">
+    Total: ₱0
+   </h3>
+   <button class="wide-btn" onclick="openCheckout()">
+    Checkout
+   </button>
+  </aside>
+  <div class="modal-backdrop" id="checkoutModal">
+   <div class="modal">
+    <div class="modal-head">
+     <h2>
+      Checkout Form
+     </h2>
+     <button class="close" onclick="closeModal('checkoutModal')">
+      ×
+     </button>
+    </div>
+    <form class="checkout-form" onsubmit="confirmOrder(event)">
+     <input aria-label="Full Name" placeholder="Full Name" required=""/>
+     <input aria-label="Contact Number" placeholder="Contact Number" required=""/>
+     <input aria-label="Email" placeholder="Email" required="" type="email"/>
+     <input aria-label="Complete Address" placeholder="Complete Address" required=""/>
+     <select required="">
+      <option>
+       Dog
+      </option>
+      <option>
+       Cat
+      </option>
+     </select>
+     <select required="">
+      <option>
+       GCash
+      </option>
+      <option>
+       Maya
+      </option>
+      <option>
+       Cash on Delivery
+      </option>
+      <option>
+       Credit/Debit Card
+      </option>
+     </select>
+     <textarea aria-label="Delivery Notes" class="full" placeholder="Delivery Notes"></textarea>
+     <div class="full" id="checkoutSummary">
+     </div>
+     <button class="primary full">
+      Confirm Order
+     </button>
+    </form>
+   </div>
+  </div>
+  <div class="modal-backdrop" id="appointmentModal">
+   <div class="modal">
+    <div class="modal-head">
+     <h2>
+      Book Appointment
+     </h2>
+     <button class="close" onclick="closeModal('appointmentModal')">
+      ×
+     </button>
+    </div>
+    <div id="serviceDetails" style="margin-bottom:16px;color:var(--muted)">
+    </div>
+    <form class="form-grid" onsubmit="confirmBooking(event)">
+     <input id="apptPet" readonly=""/>
+     <input id="apptService" readonly=""/>
+     <select required="">
+      <option>
+       Dr. Santos - Veterinarian
+      </option>
+      <option>
+       Mika Reyes - Groomer
+      </option>
+      <option>
+       Coach Luis - Trainer
+      </option>
+     </select>
+     <input required="" type="date"/>
+     <select required="">
+      <option>
+       09:00 AM
+      </option>
+      <option>
+       11:00 AM
+      </option>
+      <option>
+       02:00 PM
+      </option>
+      <option>
+       05:00 PM
+      </option>
+     </select>
+     <select required="">
+      <option>
+       GCash
+      </option>
+      <option>
+       Maya
+      </option>
+      <option>
+       Cash on Visit
+      </option>
+      <option>
+       Card
+      </option>
+     </select>
+     <textarea class="full" placeholder="Notes about your pet"></textarea>
+     <button class="primary full">
+      Confirm Appointment
+     </button>
+    </form>
+   </div>
+  </div>
+  <div class="modal-backdrop" id="productModal">
+   <div class="modal">
+    <div class="modal-head">
+     <h2 id="productModalTitle">
+      Product
+     </h2>
+     <button class="close" onclick="closeModal('productModal')">
+      ×
+     </button>
+    </div>
+    <div id="productModalBody">
+    </div>
+   </div>
+  </div>
+  <div class="modal-backdrop" id="articleModal">
+   <div class="modal">
+    <div class="modal-head">
+     <h2 id="articleModalTitle">
+      Guide
+     </h2>
+     <button class="close" onclick="closeModal('articleModal')">
+      ×
+     </button>
+    </div>
+    <div id="articleModalBody">
+    </div>
+   </div>
+  </div>
+  <div class="modal-backdrop" id="accountModal">
+   <div class="modal account-modal-box">
+    <div class="modal-head">
+     <h2>User Profile</h2>
+     <button class="close" onclick="closeModal('accountModal')">×</button>
+    </div>
+    <div class="profile-card">
+     <div class="profile-avatar" id="profileAvatar">👤</div>
+     <div>
+      <h2 id="profileDisplayName">PawLux Member</h2>
+      <p>Manage your editable profile information, confirmed orders, booked appointments, and saved wishlist items.</p>
+      <div class="profile-stats">
+       <div class="profile-stat"><b id="profileOrderCount">0</b><br><small>Orders</small></div>
+       <div class="profile-stat"><b id="profileAppointmentCount">0</b><br><small>Appointments</small></div>
+       <div class="profile-stat"><b id="profileWishlistCount">0</b><br><small>Wishlist</small></div>
+      </div>
+     </div>
+    </div>
+    <div class="profile-tabs">
+     <button class="profile-tab active" data-tab="profile" onclick="setProfileTab('profile')">Profile</button>
+     <button class="profile-tab" data-tab="orders" onclick="setProfileTab('orders')">My Orders</button>
+     <button class="profile-tab" data-tab="appointments" onclick="setProfileTab('appointments')">Appointments</button>
+     <button class="profile-tab" data-tab="wishlist" onclick="setProfileTab('wishlist')">Wishlist</button>
+     <button class="profile-tab danger" onclick="logout()">Logout</button>
+    </div>
+    <div class="profile-panel" id="profilePanel"></div>
+   </div>
+  </div>
+  <div class="toast" id="toast">
+  </div>
+  <script src="js/app.js">
+  </script>
+ </body>
+</html>
